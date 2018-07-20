@@ -1,16 +1,15 @@
 <!--index.wxml-->
 <view class="container">
-  <map bindmarkertap="markerTap"></map>
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <button bindtap='getMyLocation'>获取我的位置</button>
-  <view class="usermotto">
-    <button style="margin:30rpx;" bindtap="chooseimage">获取图片</button>
-    <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx"/>
-  </view>
+  <text class="app-title">欢迎使用I住小程序</text>
+  <picker
+      mode="region"
+      bindchange="bindRegionChange"
+      value="{{region}}"
+      custom-item="{{customItem}}"
+    >
+      <view class="picker">
+        您当前在：
+        <text class="app-currentcity">{{region[1] || "北京"}}</text>
+      </view>
+  </picker>
 </view>

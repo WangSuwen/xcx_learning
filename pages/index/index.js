@@ -4,13 +4,13 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    tempFilePaths: '',
+    currCity: '',
+    region: [],
   },
-  //事件处理函数
+  //页面跳转
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
@@ -45,39 +45,17 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
   },
-  chooseimage: function () {
-    var _this = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        console.log(res.tempFilePaths);
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        _this.setData({
-          tempFilePaths: res.tempFilePaths
-        })
-      }
-    })
-  },
-  markerTap: function(e) {
-    console.log(e);
-  },
-  getMyLocation: function() {
-    wx.getLocation({
-      success: res => {
-        console.log(res);
-      },
-      error: err => {
-        console.log(err)
-      }
+  bindRegionChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value,
+      currCity: e.detail.value[1],
     })
   }
 })

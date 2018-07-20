@@ -1,3 +1,5 @@
+// AppId:wx0336f4afbd435512
+// AppSecret: e28081a0fb8a10f1115c43c2aa40a324
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
