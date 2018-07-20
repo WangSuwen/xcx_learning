@@ -9,6 +9,21 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     currCity: '',
     region: [],
+    mockCities: [
+      { provience: "河北", cities: ['石家庄', '唐山'] },
+      { provience: "山东", cities: ['烟台', '青岛', '威海'] },
+      { provience: "河南", cities: ['郑州', '开封'] },
+      { provience: "北京", cities: ['朝阳区', '昌平区'] },
+      { provience: "浙江", cities: ['杭州', '宁波'] },
+      { provience: "江苏", cities: ['南京', '苏州'] },
+      { provience: "重庆", cities: ['渝北区', '合川区'] },
+    ],
+    areaColumn: [],
+    provenceArray: [],
+    municipalArray: [],
+    areaIndex: [0, 0],
+    loading: false,
+    isFocus: false,
   },
   //页面跳转
   bindViewTap: function() {
@@ -16,7 +31,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,6 +58,18 @@ Page({
         }
       })
     }
+    var _provArr = [], _municipalArr = [];
+    // 初始化城市数据
+    this.data.mockCities && this.data.mockCities.length && this.data.mockCities.map(city => {
+      _provArr.push(city.provience);
+      _municipalArr.push(city.cities);
+    }) && (this.setData({
+        provenceArray: _provArr, 
+        municipalArray: _municipalArr,
+      areaColumn: [_provArr, _municipalArr[0]],
+      }));
+  
+    console.log('-----', options);
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -51,11 +78,41 @@ Page({
       hasUserInfo: true
     })
   },
+  // 省市区三级联动
   bindRegionChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value,
       currCity: e.detail.value[1],
     })
+  },
+  bindMultiPickerChange: function (e) {
+    this.setData({
+      currCity: this.data.areaColumn[1][this.data.areaIndex[1]]
+    })
+  },
+  bindMultiPickerColumnChange: function (e) {
+
+    var data = {
+      areaColumn: this.data.areaColumn,
+      areaIndex: this.data.areaIndex
+    }, _val = e.detail.value, _col = e.detail.column;
+    data.areaIndex[_col] = _val;
+    _col === 0 && (data.areaColumn[1] = this.data.municipalArray[_val]);
+    this.setData(data);
+  },
+  // 输入框获取焦点以后
+  focusHandler: function() {
+    var _this = this;
+    wx.navigateTo({
+      url: '../searchHotel/searchHotel?id=123',
+      success: function() {
+        _this.setData({ isFocus: false });
+      }
+    });
+    console.log("获取了焦点");
+  },
+  confirm: function() {
+    this.setData({ loading: !this.data.loading });
   }
 })

@@ -4,7 +4,10 @@
   flex-direction: column;
   align-items: center;
 }
-
+.app-picker {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -12,13 +15,15 @@
   border-radius: 50%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
 .app-title {
   font-size: 48rpx;
+  margin: 0 auto;
+}
+.hotel-input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid
+}
+.click-class {
+  width: 500rpx;
 }

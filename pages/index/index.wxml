@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <text class="app-title">欢迎使用I住小程序</text>
-  <picker
+  <!-- <picker
       mode="region"
       bindchange="bindRegionChange"
       value="{{region}}"
@@ -11,5 +11,39 @@
         您当前在：
         <text class="app-currentcity">{{region[1] || "北京"}}</text>
       </view>
+  </picker> -->
+  <picker
+    mode="multiSelector"
+    bindchange="bindMultiPickerChange"
+    bindcolumnchange="bindMultiPickerColumnChange"
+    value="{{areaIndex}}"
+    range="{{areaColumn}}"
+    class="app-picker"
+  >
+    <view class="picker">
+      您当前在：
+      <text class="app-currentcity">{{currCity || "北京"}}</text>
+    </view>
   </picker>
+  <text>请输入您要入住的酒店：</text>
+  <view>
+    <input
+      class="hotel-input"
+      type="text"
+      confirm-type="next"
+      bindfocus="focusHandler"
+      focus="{{isFocus}}"
+    ></input>
+  </view>
+  <view>
+    <button
+      type="primary"
+      class="click-class"
+      size="default"
+      loading="{{loading}}"
+      plain="true"
+      disabled="{{disabled}}"
+      bindtap="confirm"
+    > 确定 </button>
+  </view>
 </view>

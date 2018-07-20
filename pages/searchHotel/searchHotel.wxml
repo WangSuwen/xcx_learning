@@ -1,0 +1,2 @@
+<!--pages/searchHotel/searchHotel.wxml-->
+<button bindtap="goback">回去</button>
