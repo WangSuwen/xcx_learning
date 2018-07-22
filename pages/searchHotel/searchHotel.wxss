@@ -1,1 +1,4 @@
 /* pages/searchHotel/searchHotel.wxss */
+.s-i{
+  border: 1px solid
+}

@@ -1,2 +1,3 @@
 <!--pages/searchHotel/searchHotel.wxml-->
-<button bindtap="goback">回去</button>
+<input class="s-i"></input>
+<button bindtap="checkHotel">回去</button>

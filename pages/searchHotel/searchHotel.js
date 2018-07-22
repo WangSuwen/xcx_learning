@@ -63,9 +63,13 @@ Page({
   onShareAppMessage: function () {
   
   },
-  goback: function() {
-    wx.navigateTo({
-      url: '../index/index?name=Diana',
+  checkHotel: function() {
+    wx.setStorage({
+      key: 'hotelName',
+      data: 'I住酒店',
+    })
+    wx.navigateBack({
+      delta: 1
     });
   }
 })

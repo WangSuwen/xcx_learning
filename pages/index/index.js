@@ -25,12 +25,6 @@ Page({
     loading: false,
     isFocus: false,
   },
-  //页面跳转
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onLoad: function (options) {
     if (app.globalData.userInfo) {
       this.setData({
@@ -68,8 +62,18 @@ Page({
         municipalArray: _municipalArr,
       areaColumn: [_provArr, _municipalArr[0]],
       }));
-  
-    console.log('-----', options);
+  },
+  onShow: function () {
+    // 从storage中获取用户选择的酒店
+    wx.getStorage({
+      key: 'hotelName',
+      success: function (res) {
+        console.log('-----', res);
+      },
+      fail: function(res) {
+        console.log('fail---', res);
+      }
+    })
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -92,7 +96,6 @@ Page({
     })
   },
   bindMultiPickerColumnChange: function (e) {
-
     var data = {
       areaColumn: this.data.areaColumn,
       areaIndex: this.data.areaIndex
