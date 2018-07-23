@@ -11,6 +11,12 @@ Component({
     col: {
       type: Number,
       value: 5
+    },
+    customEvent: {
+      type: String,
+    },
+    checkedRoom: {
+      type: Number,
     }
   },
 
@@ -19,25 +25,22 @@ Component({
    */
   data: {
     row: 0,
-    checkedRoom: '',
   },
 
   attached: function() {
     var _data = this.data;
     this.setData({ row: Math.ceil(_data.tbody.length / _data.col)});
   },
-
+  detached: function() {
+    wx.setStorageSync('roomId', '');
+  },
   /**
    * 组件的方法列表
    */
   methods: {
     clickRoom: function(e) {
-      var roomId = e.target.dataset.roomid;
-      this.setData({ checkedRoom: roomId});
-      wx.setStorage({
-        key: 'roomId',
-        data: roomId,
-      })
+      var myEventOption = {} // 触发事件的选项
+      this.triggerEvent(this.data.customEvent, e, myEventOption)
     }
   }
 })

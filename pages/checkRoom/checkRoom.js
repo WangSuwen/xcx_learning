@@ -6,6 +6,7 @@ Page({
    */
   data: {
     currHotel: '',
+    checkedRoom: '', // 选中的房间
     mockRooms: [
       {
         "id": 120,
@@ -160,10 +161,37 @@ Page({
   onShareAppMessage: function () {
   
   },
+  // table组件td点击事件
+  clickRoomTd: function(e) {
+    var roomId;
+    try{
+      roomId = e.detail.target.dataset.roomid;
+      this.setData({ checkedRoom: roomId });
+      wx.setStorage({
+        key: 'roomId',
+        data: roomId,
+      });
+    } catch(e) {
+      console.log(e);
+      wx.showToast({
+        title: '选择房间失败',
+      })
+    }
+  },
+  // 确认按钮 handler
   confirmCheckRoom: function() {
-    wx.showToast({
-      title: `房间ID是：${wx.getStorageSync('roomId')}`,
-      
-    })
+    var roomId = wx.getStorageSync('roomId');
+    if(roomId) {
+      wx.showToast({
+        title: `房间ID：${roomId}`,
+        mask: true,
+      });
+    } else {
+      wx.showToast({
+        title: '请选择房间',
+        icon: 'none',
+        mask: true,
+      });
+    }
   }
 })

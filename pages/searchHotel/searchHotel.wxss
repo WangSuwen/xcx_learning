@@ -3,3 +3,11 @@
 .s-i{
   border: 1px solid
 }
+.hotel-list{
+  border-bottom: 1px solid gray;
+  opacity: 0.4;
+  margin-bottom: 10px;
+}
+.hotel-list-click{
+  border-bottom-color: rgb(23, 184, 44);
+}

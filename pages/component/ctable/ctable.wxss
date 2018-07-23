@@ -18,5 +18,5 @@
   border-right: 1px solid blue;
 }
 .t-td-checked{
-  border:1px solid fuchsia;
+  background-color: fuchsia;
 }

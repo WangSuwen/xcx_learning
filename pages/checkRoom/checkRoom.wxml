@@ -5,8 +5,11 @@
   <ctable
     tbody="{{mockRooms}}"
     col="5"
+    checkedRoom="{{checkedRoom}}"
+    customEvent="clickRoomTd"
+    bind:clickRoomTd="clickRoomTd"
   />
-  <view>
+  <view style='margin-top: 10px'>
     <button
       type="primary"
       class="btn"

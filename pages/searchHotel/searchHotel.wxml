@@ -8,7 +8,7 @@
       <text>未搜索到对应酒店</text>
     </view>
     <block wx:else>
-      <view wx:for="{{hotels}}" wx:key="index" wx:for-item="hotel">
+      <view class="hotel-list" hover-class='hotel-list-click' wx:for="{{hotels}}" wx:key="index" wx:for-item="hotel">
         <text bindtap="checkHotel" data-hotelName="{{hotel}}">{{hotel}}</text>
       </view>
     </block>
