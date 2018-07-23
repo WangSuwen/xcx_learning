@@ -1,4 +1,5 @@
 /* pages/searchHotel/searchHotel.wxss */
+@import "../commonStyle/common.wxss";
 .s-i{
   border: 1px solid
 }

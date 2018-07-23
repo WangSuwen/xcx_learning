@@ -1,4 +1,5 @@
 /**index.wxss**/
+@import "../commonStyle/common.wxss";
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -15,15 +16,8 @@
   border-radius: 50%;
 }
 
-.app-title {
-  font-size: 48rpx;
-  margin: 0 auto;
-}
 .hotel-input {
   margin-top: 10px;
   margin-bottom: 10px;
   border: 1px solid
-}
-.click-class {
-  width: 500rpx;
 }

@@ -1,3 +1,16 @@
 <!--pages/searchHotel/searchHotel.wxml-->
-<input class="s-i"></input>
-<button bindtap="checkHotel">回去</button>
+<view class="container">
+  <include src="../template/header.wxml" />
+  <text>请搜索您要入住的酒店：</text>
+  <input class="s-i" bindinput='searchHotel'></input>
+  <block wx:if="{{hotels!==null}}">
+    <view wx:if="{{!hotels.length}}">
+      <text>未搜索到对应酒店</text>
+    </view>
+    <block wx:else>
+      <view wx:for="{{hotels}}" wx:key="index" wx:for-item="hotel">
+        <text bindtap="checkHotel" data-hotelName="{{hotel}}">{{hotel}}</text>
+      </view>
+    </block>
+  </block>
+</view>

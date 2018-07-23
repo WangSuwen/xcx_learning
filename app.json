@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/searchHotel/searchHotel"
+    "pages/searchHotel/searchHotel",
+    "pages/checkRoom/checkRoom"
   ],
   "window":{
     "backgroundTextStyle":"light",

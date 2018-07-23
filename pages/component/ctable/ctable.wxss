@@ -1,0 +1,22 @@
+/* pages/component/ctable/ctable.wxss */
+.t-tr{
+  display:flex;
+}
+.t-td{
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100rpx;
+  height: 45rpx;
+  border: 1px solid blue;
+  border-bottom: none;
+  border-right: none;
+}
+.t-td-l-row{
+  border-bottom: 1px solid blue;
+}
+.t-td-l-col{
+  border-right: 1px solid blue;
+}
+.t-td-checked{
+  border:1px solid fuchsia;
+}

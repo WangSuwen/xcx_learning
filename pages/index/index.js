@@ -8,6 +8,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     currCity: '',
+    currHotel: '',
     region: [],
     mockCities: [
       { provience: "河北", cities: ['石家庄', '唐山'] },
@@ -52,28 +53,39 @@ Page({
         }
       })
     }
-    var _provArr = [], _municipalArr = [];
     // 初始化城市数据
-    this.data.mockCities && this.data.mockCities.length && this.data.mockCities.map(city => {
+    var _provArr = [], _municipalArr = [];
+    // TODO: 这里应该调用API 获取城市列表，并默认把北京作为首选（现在没有定位功能，后续可能添加定位功能）
+    this.data.mockCities && this.data.mockCities.length && this.data.mockCities.map((city, index) => {
+      city.provience === '北京' && (
+        this.setData({
+          currCity: city.provience,
+          areaIndex: [index, 0]
+        })
+      )
       _provArr.push(city.provience);
       _municipalArr.push(city.cities);
     }) && (this.setData({
         provenceArray: _provArr, 
         municipalArray: _municipalArr,
-      areaColumn: [_provArr, _municipalArr[0]],
+        areaColumn: [_provArr, _municipalArr[0]],
       }));
+    // 这里应调用对应默认城市的酒店列表，并填充第一个结果
+    this.setData({ currHotel: '山东齐鲁店' });  
   },
   onShow: function () {
+    var _this = this;
     // 从storage中获取用户选择的酒店
     wx.getStorage({
       key: 'hotelName',
       success: function (res) {
-        console.log('-----', res);
-      },
-      fail: function(res) {
-        console.log('fail---', res);
+        _this.setData({ currHotel: res.data });
+        // wx.clearStorageSync();
       }
     })
+  },
+  onHide: function() {
+    this.setData({ loading: false});
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -84,7 +96,6 @@ Page({
   },
   // 省市区三级联动
   bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       region: e.detail.value,
       currCity: e.detail.value[1],
@@ -108,14 +119,20 @@ Page({
   focusHandler: function() {
     var _this = this;
     wx.navigateTo({
-      url: '../searchHotel/searchHotel?id=123',
+      url: '../searchHotel/searchHotel',
       success: function() {
         _this.setData({ isFocus: false });
       }
     });
     console.log("获取了焦点");
   },
+  // 确定按钮
   confirm: function() {
-    this.setData({ loading: !this.data.loading });
+    var _this = this;
+    this.setData({ loading: true });
+    wx.navigateTo({
+      url: '../checkRoom/checkRoom',
+      success: function () {}
+    });
   }
 })

@@ -1,0 +1,7 @@
+.app-title {
+  font-size: 48rpx;
+  margin: 0 auto;
+}
+.btn {
+  width: 500rpx;
+}

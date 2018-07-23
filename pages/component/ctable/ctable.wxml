@@ -1,0 +1,16 @@
+<block wx:for="{{row}}" wx:key="{{index}}" wx:for-index="rowInd">
+  <!--行-->
+  <view class="t-tr">
+  <!--列-->
+    <view
+      wx:for="{{col}}"
+      wx:for-index="colInd"
+      wx:key="proN-{{index}}"
+      class="t-td {{checkedRoom == tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id'] ? 't-td-checked' : ''}} {{(rowInd === (row-1) && colInd === (col-1)) ? ' t-td-l-row t-td-l-col' : (rowInd === (row-1) ? ' t-td-l-row' : (colInd === (col-1) ? ' t-td-l-col' : ''))}}"
+      bindtap="clickRoom"
+      data-roomid="{{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id']}}"
+    >
+    {{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no']}}
+    </view>
+  </view>
+</block>

@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    mockHotels: ['山东齐鲁店','重庆渝中店','四川蜀中店','河北冀北店','东三省黑吉辽店','苏杭天堂店','招远温泉店'],
+    hotels: null
   },
 
   /**
@@ -63,10 +64,21 @@ Page({
   onShareAppMessage: function () {
   
   },
-  checkHotel: function() {
+  // 用户输入的handler
+  searchHotel: function(e) {
+    console.log(e.detail.value);
+    if (e.detail.value === '1') {
+      this.setData({ hotels: [] });
+    } else {
+      this.setData({ hotels: this.data.mockHotels });
+    }
+  },
+  // 选中某一个酒店
+  checkHotel: function(e) {
+    console.log(e.target.dataset.hotelname);
     wx.setStorage({
       key: 'hotelName',
-      data: 'I住酒店',
+      data: e.target.dataset.hotelname,
     })
     wx.navigateBack({
       delta: 1
