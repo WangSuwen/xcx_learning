@@ -3,7 +3,7 @@
   <text>您办理入住的酒店是：</text>
   <text class="app-currentcity">{{currHotel}}</text>
   <ctable
-    tbody="{{mockRooms}}"
+    tbody="{{rooms}}"
     col="5"
     checkedRoom="{{checkedRoom}}"
     customEvent="clickRoomTd"

@@ -29,6 +29,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: '我是app.js里的，哈哈',
+    c_appid: 'wx0336f4afbd435512'
   }
 })

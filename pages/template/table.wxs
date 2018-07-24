@@ -1,7 +1,0 @@
-function getRow(dataLen, col) {
-  console.log('+++', dataLen, col);
-  return Math.ceil(+dataLen / +col);
-}
-module.exports = {
-  getRow: getRow
-};

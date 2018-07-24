@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-
+const { getCities } = require('../../api/api.js');
 Page({
   data: {
     userInfo: {},
@@ -81,6 +81,10 @@ Page({
     this.setData({ currHotel: '山东齐鲁店' });
     wx.setStorageSync('hotelName', '山东齐鲁店');
     wx.setStorageSync('innId', 10028);
+    getCities()
+      .then(result => {
+        console.log(result);
+      });
   },
   onShow: function () {
     var _this = this;

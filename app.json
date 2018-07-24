@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/searchHotel/searchHotel",
-    "pages/checkRoom/checkRoom"
+    "pages/checkRoom/checkRoom",
+    "pages/takePhoto/takePhoto"
   ],
   "window":{
     "backgroundTextStyle":"light",

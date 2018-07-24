@@ -1,0 +1,39 @@
+<view class="container">
+  <include src="../template/header.wxml" />
+  <view class="page-body-wrapper">
+    <camera
+      wx:if="{{!photoSrc}}"
+      device-position="back"
+      flash="off"
+      binderror="error"
+      class="camera"
+      device-position="front"
+    />
+    <image wx:if="{{photoSrc}}" src="{{photoSrc}}" class="camera"/>
+    <view class="btn-area" wx:if="{{!photoSrc}}">
+      <button
+        type="primary"
+        class='btn'
+        bindtap="takePhoto"
+        plain="true"
+      >拍照</button>
+    </view>
+    <view class="btn-area" wx:if="{{photoSrc}}">
+      <button
+        type="primary"
+        class='btn'
+        bindtap="reTakePhoto"
+        plain="true"
+      >重拍</button>
+    </view>
+    <view class="btn-area">
+      <button
+        type="primary"
+        class='btn'
+        bindtap="uploadPhoto"
+        plain="true"
+        disabled="{{!photoSrc}}"
+      >确认</button>
+    </view>
+  </view>
+</view>
