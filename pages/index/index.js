@@ -1,11 +1,12 @@
+const { appId, appsecret } = require('../../config');
+const { setCookie } = require('../../utils/util');
+const { getOpenId, getCities } = require('../../api/index');
 //获取应用实例
-const app = getApp()
-const { getCities } = require('../../api/api.js');
+const app = getApp();
+
 Page({
   data: {
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     currCity: '',
     currHotel: '',
     region: [],
@@ -26,32 +27,48 @@ Page({
     isFocus: false,
   },
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+    // 登录
+    wx.login({
+      success: res => {
+        if (res.code) {
+          // 获取appID
+          getOpenId({
+            appid: appId,
+            secret: appsecret,
+            js_code: res.code,
+            grant_type: 'authorization_code'
+          }).then(
+            result => {
+              if(!result.code) {
+                console.log('获取openId成功：', result);
+                if (setCookie('openID', 'asdfghjklsdfghj')) {
+                  return getCities();
+                }
+              } else {
+                console.error('获取openId失败：', result.message);
+                // 临时写在这里。
+                if (setCookie('openID', 'asdfghjklsdfghj')) {
+                  return getCities();
+                }
+              }
+            },
+            err => {
+              console.error('openId--请求接口失败：', err);
+            }
+          ).then(
+            result => {
+              if(!result.code) {
+                
+              } else {
+                console.log('getCities--error:', result);
+              }
+            }
+          );
+        } else {
+          console.error('登录失败');
         }
-      })
-    }
+      }
+    })
     // 初始化城市数据
     var _provArr = [], _municipalArr = [];
     // TODO: 这里应该调用API 获取城市列表，并默认把北京作为首选（现在没有定位功能，后续可能添加定位功能）
@@ -65,7 +82,7 @@ Page({
           wx.setStorageSync('currCity', city.provience);
         } catch (e) {
           wx.showToast({
-            title: '保存城市失败',
+            title: '获取城市失败',
             icon: 'none',
           });
         }
@@ -81,10 +98,7 @@ Page({
     this.setData({ currHotel: '山东齐鲁店' });
     wx.setStorageSync('hotelName', '山东齐鲁店');
     wx.setStorageSync('innId', 10028);
-    getCities()
-      .then(result => {
-        console.log(result);
-      });
+    
   },
   onShow: function () {
     var _this = this;
@@ -106,7 +120,6 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
     })
   },
   // 省市区三级联动

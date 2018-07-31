@@ -11,5 +11,5 @@
     "navigationBarTitleText": "I住",
     "navigationBarTextStyle":"black"
   },
-  "debug": false
+  "debug": true
 }

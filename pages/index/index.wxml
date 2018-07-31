@@ -26,16 +26,10 @@
     </view>
   </picker>
   <text>请输入您要入住的酒店：</text>
-  <view>
-    <input
-      class="hotel-input"
-      type="text"
-      confirm-type="next"
-      bindfocus="focusHandler"
-      focus="{{isFocus}}"
-      value="{{currHotel}}"
-    ></input>
-  </view>
+  <text
+    class="hotel-input"
+    bindtap="focusHandler"
+  >{{currHotel}}</text>
   <view>
     <button
       type="primary"

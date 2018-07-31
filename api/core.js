@@ -1,26 +1,32 @@
-const host = 'http://myblog.loveruoxi.com';
-function wxReq(url, data, reqType, option, _succ, _fail, _comp) {
+const { apiHost } = require('../config.js');
+const { cookies } = require('../utils/util');
+
+function wxReq(url, data, reqType, header, _succ, _fail, _comp) {
   return wx.request({
-    url: host + url,
+    url: apiHost + url,
     data: data,
-    header: option && option.header || {},
+    header: header && { header, 'cookie': cookies() } || { 'cookie': cookies() },
     method: reqType,
     dataType: 'json',
     responseType: 'text',
-    success: function(data) {_succ({...data.data})},
+    success: function (data, statusCode, header) {
+      let _result = { statusCode: statusCode, header: header};
+      _result = data.data.error ? { ...data.data.error, ..._result } : _succ({ ...data.data.data, ..._result});
+      _succ(_result);
+    },
     fail: function (data, status) { _fail({...data.data})},
     complete: function(){}
   });
 }
 
-function _post(url, data, option) {
+function _post(url, data, header) {
   return new Promise(function(reso, rej){
-    return wxReq(url, data, 'POST', option, reso, rej);
+    return wxReq(url, data, 'POST', header, reso, rej);
   });
 }
-function _get(url, data, option) {
+function _get(url, data, header) {
   return new Promise(function (reso, rej) {
-    return wxReq(url, data, 'GET', option, reso, rej);
+    return wxReq(url, data, 'GET', header, reso, rej);
   });
 }
 module.exports = {

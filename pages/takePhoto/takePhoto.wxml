@@ -6,10 +6,11 @@
       device-position="back"
       flash="off"
       binderror="error"
-      class="camera"
+      class="c-camera"
       device-position="front"
-    />
-    <image wx:if="{{photoSrc}}" src="{{photoSrc}}" class="camera"/>
+    >
+    </camera>
+    <image wx:if="{{photoSrc}}" src="{{photoSrc}}" class="c-camera"/>
     <view class="btn-area" wx:if="{{!photoSrc}}">
       <button
         type="primary"
