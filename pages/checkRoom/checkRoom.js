@@ -1,4 +1,4 @@
-var _mockRooms = require('../../mock/rooms.js');
+const { getRooms } = require('../../api/index');
 Page({
 
   /**
@@ -7,15 +7,38 @@ Page({
   data: {
     currHotel: '',
     checkedRoom: '', // 选中的房间
-    // rooms: [],
-    rooms: _mockRooms.rooms,
+    rooms: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({ currHotel: wx.getStorageSync('hotelName') })
+    const _innId = wx.getStorageSync('innId');
+    if (_innId) {
+      getRooms(_innId).then(
+        result => {
+          if (result && !result.code) {
+            console.log('rooms-', result);
+            this.setData({ currHotel: wx.getStorageSync('hotelName'), rooms: result });
+          } else {
+            wx.showToast({
+              title: '未获取到房间',
+              icon: 'none',
+            });
+          }
+        },
+        err => {
+          wx.showToast({
+            title: '未获取到房间',
+            icon: 'none',
+          });
+        }
+      );
+    }
+  },
+  onReady: function() {
+    
   },
   onUnload: function() {
     wx.setStorageSync('roomId', '');
@@ -46,10 +69,6 @@ Page({
   confirmCheckRoom: function() {
     var roomId = wx.getStorageSync('roomId');
     if(roomId) {
-      // wx.showToast({
-      //   title: `房间ID：${roomId}`,
-      //   mask: true,
-      // });
       wx.navigateTo({
         url: '../takePhoto/takePhoto',
       });

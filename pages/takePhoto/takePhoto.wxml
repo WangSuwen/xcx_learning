@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="padding: 0 0">
   <include src="../template/header.wxml" />
   <view class="page-body-wrapper">
     <camera
@@ -6,11 +6,13 @@
       device-position="back"
       flash="off"
       binderror="error"
-      class="c-camera"
       device-position="front"
+      style="height:{{cameraHeight}}px"
     >
+      <cover-view bindtap="takePhoto" class="cover-view c-usable" style="margin-top:{{cameraHeight - 140}}px">{{photoSrc ? '重拍' : '拍照'}}</cover-view>
+      <cover-view bindtap="uploadPhoto" class="cover-view {{photoSrc ? 'c-usable' : 'c-disabled'}}">确认</cover-view>
     </camera>
-    <image wx:if="{{photoSrc}}" src="{{photoSrc}}" class="c-camera"/>
+    <image wx:if="{{photoSrc}}" src="{{photoSrc}}" style="width:100%; height:{{cameraHeight}}px"/>
     <view class="btn-area" wx:if="{{!photoSrc}}">
       <button
         type="primary"
@@ -36,5 +38,6 @@
         disabled="{{!photoSrc}}"
       >确认</button>
     </view>
+    <canvas style="width: 300px; height: 200px; opacity:0;" canvas-id="attendCanvasId"></canvas>
   </view>
 </view>

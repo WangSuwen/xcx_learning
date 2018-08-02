@@ -1,4 +1,5 @@
 // pages/takePhoto/takePhoto.js
+const { uploadImg } = require('../../api/index');
 Page({
 
   /**
@@ -6,6 +7,9 @@ Page({
    */
   data: {
     photoSrc: '',
+    windowHeight: 0,
+    toPx: 0,
+    cameraHeight: 0,
   },
 
   /**
@@ -13,17 +17,29 @@ Page({
    */
   onLoad: function (options) {
     this.ctx = wx.createCameraContext();
+    // 获取系统信息
+    const sysInfo = wx.getSystemInfoSync(),
+      _windowHeight = sysInfo.windowHeight,
+      _toPx = sysInfo.screenWidth / 750,
+      _cameraHeight = _windowHeight - 48 * _toPx;
+    this.setData({
+      windowHeight: _windowHeight,
+      toPx: _toPx,
+      cameraHeight: _cameraHeight 
+    });
   },
   /**
    * 照相
    */
   takePhoto() {
+    const _this = this;
     this.ctx.takePhoto({
-      quality: 'high',
+      quality: 'low',
       success: (res) => {
-        this.setData({
+        const filePath = res.tempImagePath;
+        _this.setData({
           photoSrc: res.tempImagePath
-        })
+        });
       }
     })
   },
@@ -31,14 +47,43 @@ Page({
    * 重拍
    */
   reTakePhoto: function() {
-    this.setData({photoSrc: ''});
+    this.setData({ photoSrc: ''});
   },
   /**
    * 上传照片
    */
   uploadPhoto: function() {
-    wx.showToast({
-      title: '哇，抓到一人儿！'
-    })
+    let roomId;
+    try {
+      roomId = wx.getStorageSync('roomId');
+    } catch (e) {
+      console.error('获取roomId失败：', e);
+      wx.showToast({
+        title: '上传失败！',
+        icon: 'none',
+      })
+    }
+    uploadImg(this.data.photoSrc, { roomId: roomId }).then(
+      result => {
+        if(!result.status){
+          wx.showToast({
+            title: '上传成功！'
+          })
+        } else {
+          console.error('上传失败：', result.message);
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none',
+          })
+        }
+      },
+      err => {
+        console.error('上传失败：', err);
+        wx.showToast({
+          title: '上传失败！',
+          icon: 'none',
+        })
+      }
+    );
   }
 })

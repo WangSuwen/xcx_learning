@@ -1,5 +1,5 @@
 module.exports = {
   appId: 'wx0336f4afbd435512',
-  appsecret: 'e78bd88f5372aeb9c806a45bd4261c1d',
-  apiHost: 'http://cow.dev.ia.hoteltest.meituan.com/cow/api/c'
+  appsecret: 'e027bdc9adb1fbd5a136ffa53af05bfa',
+  apiHost: 'http://cow.st.ia.hoteltest.meituan.com/cow'
 }

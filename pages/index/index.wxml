@@ -1,17 +1,6 @@
 <!--index.wxml-->
 <view class="container">
   <include src="../template/header.wxml" />
-  <!-- <picker
-      mode="region"
-      bindchange="bindRegionChange"
-      value="{{region}}"
-      custom-item="{{customItem}}"
-    >
-      <view class="picker">
-        您当前在：
-        <text class="app-currentcity">{{region[1] || "北京"}}</text>
-      </view>
-  </picker> -->
   <picker
     mode="multiSelector"
     bindchange="bindMultiPickerChange"

@@ -9,7 +9,11 @@
     </view>
     <block wx:else>
       <view class="hotel-list" hover-class='hotel-list-click' wx:for="{{hotels}}" wx:key="index" wx:for-item="hotel">
-        <text bindtap="checkHotel" data-hotelName="{{hotel}}">{{hotel}}</text>
+        <text
+          bindtap="checkHotel"
+          data-hotelName="{{hotel.name}}"
+          data-innId="{{hotel.innId}}"
+        >{{hotel.name}}</text>
       </view>
     </block>
   </block>

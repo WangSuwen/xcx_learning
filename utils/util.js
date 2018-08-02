@@ -50,5 +50,6 @@ function cookies() {
 module.exports = {
   formatTime: formatTime,
   setCookie: setCookie,
+  getCookie: getCookie,
   cookies: cookies
 }

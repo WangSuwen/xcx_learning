@@ -8,13 +8,30 @@
   width: 100%;
   padding: 0 30rpx;
 }
-.c-camera {
-  width:600rpx !important;
-  height:600rpx !important;
-}
+
 .page-body-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+.cover-view {
+  transform: translateX(-50%);
+  margin-left: 50%;
+  margin-top: 20px;
+  width: 500rpx;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color:transparent;
+  border-radius:5px;
+}
+.c-usable {
+  color: #1AAD19;
+  border:1px solid #1AAD19;
+}
+
+.c-disabled {
+  color:rgba(0, 0, 0, 0.2);
+  border:1px solid rgba(0, 0, 0, 0.2);
 }

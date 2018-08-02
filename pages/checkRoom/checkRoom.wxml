@@ -2,13 +2,15 @@
   <include src="../template/header.wxml" />
   <text>您办理入住的酒店是：</text>
   <text class="app-currentcity">{{currHotel}}</text>
-  <ctable
-    tbody="{{rooms}}"
-    col="5"
-    checkedRoom="{{checkedRoom}}"
-    customEvent="clickRoomTd"
-    bind:clickRoomTd="clickRoomTd"
-  />
+  <block wx:if="{{rooms.length}}">
+    <ctable
+        tbody="{{rooms}}"
+        col="5"
+        checkedRoom="{{checkedRoom}}"
+        customEvent="clickRoomTd"
+        bind:clickRoomTd="clickRoomTd"
+    />
+  </block>
   <view style='margin-top: 10px'>
     <button
       type="primary"
