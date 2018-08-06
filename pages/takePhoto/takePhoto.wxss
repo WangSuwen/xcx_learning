@@ -1,36 +1,23 @@
 @import "../commonStyle/common.wxss";
-.preview-tips {
-  margin: 20rpx 0;  
-}
-.btn-area {
-  position: absolute;
-  width: 100%;
-  padding: 0 30rpx;
-}
 
-.page-body-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-.cover-view {
-  transform: translateX(-50%);
-  margin-left: 50%;
-  margin-top: 20px;
-  width: 500rpx;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  background-color:transparent;
+.camera {
+  display:block;
+  height:600rpx;
+  width:600rpx;
+  margin:0 auto;
   border-radius:5px;
 }
-.c-usable {
-  color: #1AAD19;
-  border:1px solid #1AAD19;
+.tips-view {
+  text-align:center;
+  margin-top:40rpx;
 }
-
-.c-disabled {
-  color:rgba(0, 0, 0, 0.2);
-  border:1px solid rgba(0, 0, 0, 0.2);
+.tips-view text {
+  display:block;
+}
+.tips-one {
+  color: rgb(255,71,0);
+}
+.tips-tow {
+  font-size:30rpx;
+  color: rgb(149,148,149);
 }

@@ -1,3 +1,4 @@
+<view style="max-height: {{showRows * 110}}rpx; overflow-y:scroll;">
 <block wx:for="{{row}}" wx:key="{{index}}" wx:for-index="rowInd">
   <!--行-->
   <view class="t-tr">
@@ -6,7 +7,7 @@
       wx:for="{{col}}"
       wx:for-index="colInd"
       wx:key="proN-{{index}}"
-      class="t-td {{checkedRoom == tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id'] ? 't-td-checked' : ''}} {{(rowInd === (row-1) && colInd === (col-1)) ? ' t-td-l-row t-td-l-col' : (rowInd === (row-1) ? ' t-td-l-row' : (colInd === (col-1) ? ' t-td-l-col' : ''))}}"
+      class="t-td {{checkedRoom == tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id'] ? 't-td-checked' : ''}} {{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no'].length > 7 ? 'multi-line-td' : 't-td-lineheight'}}"
       bindtap="clickRoom"
       data-roomid="{{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id']}}"
     >
@@ -14,3 +15,4 @@
     </view>
   </view>
 </block>
+</view>

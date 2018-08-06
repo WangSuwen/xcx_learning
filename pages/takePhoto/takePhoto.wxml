@@ -1,45 +1,38 @@
-<view class="container" style="padding: 0 0">
+<view class="main" style="padding: 0 0">
   <include src="../template/header.wxml" />
-  <view class="page-body-wrapper">
+  <view class="container fix-container">
     <camera
       wx:if="{{!photoSrc}}"
       device-position="back"
       flash="off"
       binderror="error"
       device-position="front"
-      style="height:{{cameraHeight}}px"
-    >
-      <cover-view
-        bindtap="takePhoto"
-        class="cover-view c-usable"
-        style="margin-top:{{cameraHeight - 140}}px"
-      >
-        拍照
-      </cover-view>
-      <cover-view
-        bindtap="uploadPhoto"
-        class="cover-view c-disabled"
-      >
-        确认
-      </cover-view>
-    </camera>
-    
-      <image wx:if="{{photoSrc}}" src="{{photoSrc}}" style="width:100%; height:{{cameraHeight}}px"/>
-    <view class="btn-area" wx:if="{{photoSrc}}" style="margin-top:{{cameraHeight - 140}}px">
-      <button
-        type="primary"
-        class='btn'
-        bindtap="reTakePhoto"
-        plain="true"
-      >重拍</button>
+      class="camera"
+    />
+    <image
+      wx:if="{{photoSrc}}"
+      src="{{photoSrc}}"
+      class="camera"
+    />
+    <view class="tips-view">
+      <text class="tips-one">{{photoSrc ? '拍照完成，请上传照片！' : '请拍摄正脸照片...'}}</text>
+      <text class="tips-tow">{{photoSrc ? '' : '需清晰拍摄入住人正脸照片，否则可能无法入住'}}</text>
     </view>
-    <view class="btn-area" wx:if="{{photoSrc}}" style="margin-top:{{cameraHeight - 70}}px">
+    <view>
       <button
-        type="primary"
-        class='btn'
-        bindtap="uploadPhoto"
-        plain="true"
-      >确认</button>
+        bindtap="{{photoSrc ? 'uploadPhoto' : 'takePhoto'}}"
+        class="btn beauty-btn"
+        style="width: 550rpx"
+      >
+        {{photoSrc ? '上传照片' : '拍照'}}
+      </button>
+      <button
+        bindtap="{{photoSrc ? 'reTakePhoto' : 'goBack'}}"
+        class="btn normal-btn"
+        style="width: 550rpx"
+      >
+        {{photoSrc ? '重新拍摄' : '取消'}}
+      </button>
     </view>
   </view>
 </view>

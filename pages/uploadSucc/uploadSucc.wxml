@@ -1,0 +1,16 @@
+<!--pages/uploadSucc/uploadSucc.wxml-->
+<view class="main">
+  <view class="container fix-container">
+    <view class="icon-container">
+      <image
+        class="icon"
+        src="../../static/upload-{{uploadStatus ? 'success' : 'failed'}}.png"
+      />
+      <view>{{uploadStatus ? '上传成功' : '上传失败'}}</view>
+    </view>
+    <view class="upload-tips upload-{{uploadStatus ? 'success' : 'failed'}}-tips">
+      {{uploadStatus ? '请使用身份证开门，门锁读取身份证至少要5秒，识别期间，请勿移开' : '请联系老版辅助认证入住人信息并授权开门或重新尝试'}}
+    </view>
+    <button class="upload-status-btn">关闭</button>
+  </view>
+</view>

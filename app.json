@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/searchHotel/searchHotel",
     "pages/checkRoom/checkRoom",
-    "pages/takePhoto/takePhoto"
+    "pages/takePhoto/takePhoto",
+    "pages/uploadSucc/uploadSucc"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "I住",
+    "navigationBarTitleText": "爱住自助",
     "navigationBarTextStyle":"black"
   },
   "debug": true

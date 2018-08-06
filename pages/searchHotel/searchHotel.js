@@ -7,13 +7,6 @@ Page({
   data: {
     hotels: null
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
   // 用户输入的handler
   searchHotel: function(e) {
     console.log(e.detail.value);

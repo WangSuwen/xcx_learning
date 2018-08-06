@@ -1,2 +1,8 @@
 /* pages/checkRoom/checkRoom.wxss */
 @import "../commonStyle/common.wxss";
+.current-hotel {
+  font-size: 48rpx;
+  border-bottom:1px solid rgb(246,246,246);
+  margin-bottom:40rpx;
+  padding-bottom:40rpx;
+}

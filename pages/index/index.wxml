@@ -1,33 +1,40 @@
 <!--index.wxml-->
-<view class="container">
-  <include src="../template/header.wxml" />
-  <picker
-    mode="multiSelector"
-    bindchange="bindMultiPickerChange"
-    bindcolumnchange="bindMultiPickerColumnChange"
-    value="{{areaIndex}}"
-    range="{{areaColumn}}"
-    class="app-picker"
-  >
-    <view class="picker">
-      您当前在：
-      <text class="app-currentcity">{{currCity}}</text>
+<view class="main">
+  <include src="../template/header1.wxml" />
+  <view class="container">
+    <picker
+      mode="multiSelector"
+      bindchange="bindMultiPickerChange"
+      bindcolumnchange="bindMultiPickerColumnChange"
+      value="{{areaIndex}}"
+      range="{{areaColumn}}"
+      class="sub-container"
+    >
+      <view class="text-gray">您当前位置</view>
+      <view class="text-select">
+        <view class="app-currentcity triangle-common triangle-currcity">{{currCity || '北京市'}}</view>
+      </view>
+    </picker>
+    <view class="sub-container">
+      <text class="text-gray">请输入您要入住的酒店：</text>
+      <view
+        class="text-select"
+        style="position:relative"
+        bindtap="focusHandler"
+      >
+       {{currHotel}}
+      </view>
     </view>
-  </picker>
-  <text>请输入您要入住的酒店：</text>
-  <text
-    class="hotel-input"
-    bindtap="focusHandler"
-  >{{currHotel}}</text>
-  <view>
-    <button
-      type="primary"
-      class="btn"
-      size="default"
-      loading="{{loading}}"
-      plain="true"
-      disabled="{{disabled}}"
-      bindtap="confirm"
-    > 确定 </button>
+    <view>
+      <button
+        type="primary"
+        class="btn beauty-btn"
+        size="default"
+        loading="{{loading}}"
+        plain="true"
+        disabled="{{disabled}}"
+        bindtap="confirm"
+      > 确定 </button>
+    </view>
   </view>
 </view>

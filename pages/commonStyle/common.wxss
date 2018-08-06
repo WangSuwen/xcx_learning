@@ -1,7 +1,64 @@
+.app-title-index {
+  font-size: 58rpx;
+  margin: 10px auto;
+  font-weight: 800;
+}
 .app-title {
   font-size: 48rpx;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .btn {
-  width: 500rpx;
+  width: 100%;
+  height:110rpx;
+  margin:20px auto;
+  line-height:110rpx;
+  border-radius: 25px;
+}
+.normal-btn {
+  background: white;
+  color: rgb(29,29,29) !important;
+  border-color: rgb(246,246,246) !important;
+  box-shadow: 0px 0px 2px rgb(238,238,238);
+}
+.beauty-btn {
+  background: -webkit-linear-gradient(left, rgb(253,116,79), rgb(249,100,105));
+  color: white !important;
+  border-color: rgb(246,246,246) !important;
+  box-shadow: 0 0 20px 5px rgb(254,226,226);
+}
+.disable-btn {
+  background: rgb(198, 198, 198);
+  color: rgb(198, 198, 198);
+}
+.upload-status-btn {
+  width: 284rpx;
+  height: 81rpx;
+  background: #FFFFFF;
+  border: 1px solid #F9504C;
+  border-radius: 25px;
+  color: #F9504C;
+}
+.text-gray {
+  display:block;
+  color: rgb(127,127,127);
+  margin-bottom:5px;
+}
+.container {
+  width:100%;
+  max-height:1000rpx;
+  border:1px solid rgb(227, 230, 231);
+  border-radius:5px;
+  padding:10px 10px;
+  box-sizing:border-box;
+  margin-top:30rpx;
+  box-shadow:0 0 8px 8px rgb(248,249,252);
+}
+.fix-container {
+  border: none !important;
+  box-shadow: none !important;
+  margin-top: 10rpx !important;
+}
+.sub-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

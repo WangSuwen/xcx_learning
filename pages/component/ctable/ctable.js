@@ -12,6 +12,11 @@ Component({
       type: Number,
       value: 5
     },
+    // 页面做多展示多少行，超过则展示滚动条
+    showRows: {
+      type: Number,
+      value: 5,
+    },
     customEvent: {
       type: String,
     },

@@ -1,5 +1,5 @@
 <!--pages/searchHotel/searchHotel.wxml-->
-<view class="container">
+<view class="main">
   <include src="../template/header.wxml" />
   <text>请搜索您要入住的酒店：</text>
   <input class="s-i" bindinput='searchHotel'></input>

@@ -1,0 +1,31 @@
+/* pages/uploadSucc/uploadSucc.wxss */
+@import "../commonStyle/common.wxss";
+.icon-container {
+  margin: 30rpx 0 55rpx 0;
+  padding-bottom: 96rpx;
+  border-bottom:1px solid rgb(243,244,247);
+}
+.icon-container view {
+  margin:0 auto;
+  text-align: center;
+  color: #202020;
+  font-size: 33rpx;
+  line-height: 40rpx;
+}
+.icon {
+  width:110rpx;
+  height:110rpx;
+  border-radius:50%;
+  display:block;
+  margin:0 auto;
+  margin-bottom:36rpx !important;
+}
+.upload-tips {
+  margin-bottom: 183rpx;
+}
+.upload-failed-tips {
+  color: #F9504C;
+}
+.upload-success-tips {
+  color: #FF6230;
+}

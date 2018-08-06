@@ -17,16 +17,6 @@ Page({
    */
   onLoad: function (options) {
     this.ctx = wx.createCameraContext();
-    // 获取系统信息
-    const sysInfo = wx.getSystemInfoSync(),
-      _windowHeight = sysInfo.windowHeight,
-      _toPx = sysInfo.screenWidth / 750,
-      _cameraHeight = _windowHeight - 48 * _toPx;
-    this.setData({
-      windowHeight: _windowHeight,
-      toPx: _toPx,
-      cameraHeight: _cameraHeight 
-    });
   },
   /**
    * 照相
@@ -34,7 +24,7 @@ Page({
   takePhoto() {
     const _this = this;
     this.ctx.takePhoto({
-      quality: 'low',
+      quality: 'normal',
       success: (res) => {
         const filePath = res.tempImagePath;
         _this.setData({
@@ -49,41 +39,47 @@ Page({
   reTakePhoto: function() {
     this.setData({ photoSrc: ''});
   },
+  setUploadStatusSync: function(status) {
+    wx.setStorageSync('uploadStatus', status);
+  },
   /**
    * 上传照片
    */
   uploadPhoto: function() {
-    let roomId;
+    let roomId, _this = this;
     try {
       roomId = wx.getStorageSync('roomId');
     } catch (e) {
       console.error('获取roomId失败：', e);
-      wx.showToast({
-        title: '上传失败！',
-        icon: 'none',
-      })
+      this.setUploadStatusSync(false);
     }
     uploadImg(this.data.photoSrc, { roomId: roomId }).then(
       result => {
-        if(!result.status){
-          wx.showToast({
-            title: '上传成功！'
-          })
+        if(result.data){
+          this.setUploadStatusSync(true);
         } else {
           console.error('上传失败：', result.message);
-          wx.showToast({
-            title: '上传失败',
-            icon: 'none',
-          })
+          this.setUploadStatusSync(false);
         }
+        wx.navigateTo({
+          url: '../uploadSucc/uploadSucc',
+        });
       },
       err => {
         console.error('上传失败：', err);
-        wx.showToast({
-          title: '上传失败！',
-          icon: 'none',
-        })
+        this.setUploadStatusSync(false);
+        wx.navigateTo({
+          url: '../uploadSucc/uploadSucc',
+        });
       }
     );
+  },
+  /**
+   * 退回到上一页面
+   */
+  goBack: function() {
+    wx.navigateBack({
+      delta: 1
+    });
   }
 })

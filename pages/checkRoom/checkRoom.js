@@ -8,6 +8,7 @@ Page({
     currHotel: '',
     checkedRoom: '', // 选中的房间
     rooms: [],
+    disabled: true, // 未选中房间，按钮不可用
   },
 
   /**
@@ -42,6 +43,7 @@ Page({
   },
   onUnload: function() {
     wx.setStorageSync('roomId', '');
+    this.setData({ disabled: true });
   },
   /**
    * table组件td点击事件
@@ -51,7 +53,7 @@ Page({
     try{
       roomId = e.detail.target.dataset.roomid;
       if (roomId) {
-        this.setData({ checkedRoom: roomId });
+        this.setData({ checkedRoom: roomId, disabled: false });
         wx.setStorageSync('roomId', roomId);
       } else {
         throw Error();

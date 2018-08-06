@@ -1,5 +1,7 @@
 //app.js
 App({
-  onLaunch: function () { },
+  onLaunch: function () {
+    wx.clearStorageSync();
+  },
   globalData: { }
 })

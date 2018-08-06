@@ -167,7 +167,6 @@ Page({
   },
   // 省市区三级联动， 滚动任意一列
   bindMultiPickerColumnChange: function (e) {
-    console.log(11111);
     const _data = this.data, _areaColumnLength = _data.areaColumn.length;
     const data = {
       areaColumn: _data.areaColumn,
