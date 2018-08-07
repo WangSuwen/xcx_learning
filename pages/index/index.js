@@ -119,36 +119,30 @@ Page({
             });
           }
         } else {
-          wx.showToast({
-            title: '未获取到城市',
-            icon: 'none',
-          });
+          this.errHandler({}, '未获取到城市')
         }
       },
-      err => {
-        wx.showToast({
-          title: '未获取到城市',
-          icon: 'none',
-        });
-      }
+      err => this.errHandler(err, '未获取到城市')
     ).then(
-      hotels => {
-        if (hotels && !hotels.code && hotels.length) {
-          const hotel = hotels[0];
-          this.setData({ currHotel: hotel.name });
-          wx.setStorageSync('hotelName', hotel.name);
-          wx.setStorageSync('innId', hotel.innId);
-        } else {
-          this.setData({ currHotel: '未获取到酒店' });
-        }
-      },
-      err => {
-        wx.showToast({
-          title: '未获取到酒店',
-          icon: 'none',
-        });
-      }
+      this.setDefaultHotel,
+      err => this.errHandler(err, '未获取到酒店')
     );
+  },
+  errHandler: function(err, msg) {
+    wx.showToast({
+      title: msg,
+      icon: 'none',
+    });
+  },
+  setDefaultHotel: function(hotels) {
+    if (hotels && !hotels.code && hotels.length) {
+      const hotel = hotels[0];
+      this.setData({ currHotel: hotel.name });
+      wx.setStorageSync('hotelName', hotel.name);
+      wx.setStorageSync('innId', hotel.innId);
+    } else {
+      this.setData({ currHotel: '未获取到酒店' });
+    }
   },
   // 省市区三级联动， 点击【确定】
   bindMultiPickerChange: function (e) {
@@ -158,11 +152,16 @@ Page({
     });
     try{
       wx.setStorageSync('currCity', _currCity);
+      // 查当前选中的市的酒店
+      getHotels({
+        keyword: '',
+        city: _currCity,
+        longitude: 0.0,
+        latitude: 0.0,
+        recordLimit: 1000
+      }).then(this.setDefaultHotel, err => this.errHandler(err, '未获取到酒店'))
     } catch (e) {
-      wx.showToast({
-        title: '保存城市失败',
-        icon: 'none',
-      });
+      this.errHandler(e, '保存城市失败');
     }
   },
   // 省市区三级联动， 滚动任意一列
@@ -193,7 +192,6 @@ Page({
         _this.setData({ isFocus: false });
       }
     });
-    console.log("获取了焦点");
   },
   // 确定按钮
   confirm: function() {
@@ -202,26 +200,17 @@ Page({
     try{
       innId = wx.getStorageSync('innId');
     } catch(e) {
-      wx.showToast({
-        title: '获取酒店失败',
-        icon: 'none',
-      });
+      this.errHandler(e, '获取酒店失败');
     }
     try {
       hotelName = wx.getStorageSync('hotelName');
     } catch (e) {
-      wx.showToast({
-        title: '获取酒店失败',
-        icon: 'none',
-      });
+      this.errHandler(e, '获取酒店失败');
     }
     try {
       currCity = wx.getStorageSync('currCity');
     } catch (e) {
-      wx.showToast({
-        title: '获取城市失败',
-        icon: 'none',
-      });
+      this.errHandler(e, '获取城市失败');
     }
     if (innId && hotelName && currCity) {
       this.setData({ loading: true });
@@ -230,10 +219,7 @@ Page({
       });
     } else {
       var errMsg = !innId && !hotelName ? '请选择入住酒店' : '请选择城市';
-      wx.showToast({
-        title: '请选择入住酒店',
-        icon: 'none',
-      });
+      this.errHandler(e, '请选择入住酒店');
     }
   }
 })

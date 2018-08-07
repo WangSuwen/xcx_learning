@@ -5,11 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hotels: null
+    hotels: null,
+    userInputs: '',
   },
-  // 用户输入的handler
+  onLoad: function() {
+    this.setData({ userInputs: wx.getStorageSync('hotelName')});
+  },
+  /**
+   * 用户输入的handler
+   */
   searchHotel: function(e) {
-    console.log(e.detail.value);
+    this.setData({'userInputs': e.detail.value.trim()});
     getHotels({
       keyword: e.detail.value.trim(),
       city: wx.getStorageSync('currCity'),
@@ -19,13 +25,7 @@ Page({
     }).then(
       result => {
         if (result && !result.code) {
-          console.log(123456, result);
           this.setData({hotels: result});
-        } else {
-          wx.showToast({
-            title: '未获取到酒店',
-            icon: 'none',
-          });
         }
       },
       err => {
@@ -36,7 +36,9 @@ Page({
       }
     );
   },
-  // 选中某一个酒店
+  /**
+   *  选中某一个酒店
+   */
   checkHotel: function(e) {
     wx.setStorage({
       key: 'hotelName',
@@ -46,5 +48,19 @@ Page({
     wx.navigateBack({
       delta: 1
     });
+  },
+  /**
+   * 取消 按钮
+   */
+  cancelSearch: function() {
+    wx.navigateBack({
+      delta: 1,
+    });
+  },
+  /**
+   * 叉号按钮
+   */
+  clearSearch: function() {
+    this.setData({ hotels: [], userInputs: '' });
   }
 })

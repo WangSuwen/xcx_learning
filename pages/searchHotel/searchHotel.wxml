@@ -1,19 +1,39 @@
 <!--pages/searchHotel/searchHotel.wxml-->
 <view class="main">
-  <include src="../template/header.wxml" />
-  <text>请搜索您要入住的酒店：</text>
-  <input class="s-i" bindinput='searchHotel'></input>
-  <block wx:if="{{hotels!==null}}">
-    <view wx:if="{{!hotels.length}}">
-      <text>未搜索到对应酒店</text>
+  <view class="hotel-content">
+    <view class="text-search-icon">
+      <image class="close-icon" src="../../static/search-big.png"></image>
     </view>
+    <input value="{{userInputs}}" class="text-select search-input" bindinput='searchHotel'></input>
+    <view class="text-close-icon" bindtap="clearSearch">
+      <image class="close-icon" src="../../static/clear-search.png"></image>
+    </view>
+  </view>
+  <text bindtap="cancelSearch" class="cancel-search">取消</text>
+  <block wx:if="{{hotels!==null}}">
+    <block wx:if="{{!hotels.length}}">
+      <view class="hotel-list">
+        <image class="small-search-icon" src="../../static/search-small.png"></image>
+        <text>
+          没有查询到该酒店，请确认酒店名字
+        </text>
+      </view>
+    </block>
     <block wx:else>
-      <view class="hotel-list" hover-class='hotel-list-click' wx:for="{{hotels}}" wx:key="index" wx:for-item="hotel">
-        <text
-          bindtap="checkHotel"
-          data-hotelName="{{hotel.name}}"
-          data-innId="{{hotel.innId}}"
-        >{{hotel.name}}</text>
+      <view
+        class="hotel-list"
+        bindtap="checkHotel"
+        data-hotelName="{{hotel.name}}"
+        data-innId="{{hotel.innId}}"
+        hover-class='hotel-list-click'
+        wx:for="{{hotels}}"
+        wx:key="index"
+        wx:for-item="hotel"
+      >
+        <image class="small-search-icon" src="../../static/search-small.png"></image>
+        <text>
+          {{hotel.name}}
+        </text>
       </view>
     </block>
   </block>

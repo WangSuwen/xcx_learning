@@ -12,7 +12,14 @@
     >
       <view class="text-gray">您当前位置</view>
       <view class="text-select">
-        <view class="app-currentcity triangle-common triangle-currcity">{{currCity || '北京市'}}</view>
+        <view class="app-currentcity">{{currCity || '北京市'}}</view>
+        <image
+          src="../../static/triangle.png"
+          class="triangle-img"/>
+        <view class="text-select-icon">
+          <image class="location-img" src="../../static/location.png"></image>
+          <text class="location-text">当前位置</text>
+        </view>
       </view>
     </picker>
     <view class="sub-container">
@@ -22,7 +29,10 @@
         style="position:relative"
         bindtap="focusHandler"
       >
-       {{currHotel}}
+        <view class="app-currentcity">{{currHotel}}</view>
+        <view class="text-select-icon">
+          <image class="search-icon" src="../../static/search-big.png"></image>
+        </view>
       </view>
     </view>
     <view>

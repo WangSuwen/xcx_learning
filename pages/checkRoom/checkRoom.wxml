@@ -1,17 +1,20 @@
 <view class="main">
   <include src="../template/header1.wxml" />
   <view class="container">
-    <text class="text-gray">您办理入住的酒店是：</text>
+    <text class="checkin-text checkin-title">您办理入住的酒店是：</text>
     <view class="current-hotel">{{currHotel}}</view>
+    <view style="height:{{showRows * 110}}rpx;overflow:scroll;">
+      <text class="checkin-text room-tips">请选择您入住的房间</text>
       <block wx:if="{{rooms.length}}">
         <ctable
-            tbody="{{rooms}}"
-            col="4"
-            checkedRoom="{{checkedRoom}}"
-            customEvent="clickRoomTd"
-            bind:clickRoomTd="clickRoomTd"
+          tbody="{{rooms}}"
+          col="{{showColumn}}"
+          checkedRoom="{{checkedRoom}}"
+          customEvent="clickRoomTd"
+          bind:clickRoomTd="clickRoomTd"
         />
       </block>
+    </view>
     <view style='margin-top: 10px'>
       <button
         type="primary"

@@ -14,34 +14,49 @@
 }
 
 .app-currentcity {
-  color: black;
+  color: #000;
+  font-size: 29.33rpx;
   display: inline-block;
-  position: relative;
-}
-.triangle-common::after {
-  content: "";
-  border-top: 6px solid rgb(42,43,39);
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
   position: absolute;
-  top: 45rpx;
 }
+
+.triangle-img {
+  width: 14.66rpx;
+  height: 7.33rpx;
+  margin: 44rpx 0 44rpx 97rpx;
+}
+
 .triangle-currcity::after {
+  content: "";
+  border-top: 14.66rpx solid rgb(42,43,39);
+  border-left: 7.33rpx solid transparent;
+  border-right: 7.33rpx solid transparent;
+  /* top: 44rpx; */
+  margin-top: 44rpx;
   position: relative;
-  top: 35rpx;
   margin-left:  10rpx;
 }
-.triangle-currhotel::after {
-  right: 20rpx;
+
+.location-text {
+  font-family: PingFangSC-Regular;
+  font-size: 18.33rpx;
+  color: #9B9EA7;
+  line-height: 23.83rpx;
+  position:relative;
+  bottom:-12rpx;
+  right:-3px;
 }
-.text-select {
-  display: block;
-  height:100rpx;
-  background-color:rgb(242,243,247);
-  border-radius:5px;
-  line-height:100rpx;
-  padding:0 20px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+.search-icon {
+  width: 33rpx;
+  height: 33rpx;
+}
+.text-select-icon {
+  float: right;
+}
+.location-img {
+  width: 27.5rpx;
+  height: 27.5rpx;
+  position:relative;
+  top:-10rpx;
+  right:-55rpx;
 }

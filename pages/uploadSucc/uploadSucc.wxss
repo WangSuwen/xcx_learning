@@ -1,7 +1,7 @@
 /* pages/uploadSucc/uploadSucc.wxss */
 @import "../commonStyle/common.wxss";
 .icon-container {
-  margin: 30rpx 0 55rpx 0;
+  margin: 100rpx 0 55rpx 0;
   padding-bottom: 96rpx;
   border-bottom:1px solid rgb(243,244,247);
 }

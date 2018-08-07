@@ -1,13 +1,56 @@
 /* pages/searchHotel/searchHotel.wxss */
 @import "../commonStyle/common.wxss";
-.s-i{
-  border: 1px solid
+.hotel-content {
+  position: relative;
+}
+.text-search-icon {
+  position:absolute;
+  left:18rpx;
+  top:22rpx;
+  z-index:9999;
+}
+.text-close-icon {
+  position: absolute;
+  right: 18rpx;
+  top:22rpx;
+  z-index:9999;
+}
+.cancel-search {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #F9504C;
+  line-height: 34rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 30rpx;
+}
+.close-icon {
+  width: 33rpx;
+  height: 33rpx;
+}
+.small-search-icon {
+  width: 28.66rpx;
+  height: 28.66rpx;
+  margin-top:6rpx;
+}
+.search-input {
+  width: 584rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 29.33rpx;
+  line-height: 36.66rpx;
+  padding-left:69.66rpx;
+  box-sizing:border-box;
 }
 .hotel-list{
-  border-bottom: 1px solid gray;
-  opacity: 0.4;
-  margin-bottom: 10px;
+  border-bottom:1px solid #F4F5F8;
+  width: 670rpx;
+  padding-bottom: 30rpx;
 }
-.hotel-list-click{
-  border-bottom-color: rgb(23, 184, 44);
+.hotel-list > text {
+  display:inline-block;
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 40rpx;
+  margin-left: 20rpx;
 }

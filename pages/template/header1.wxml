@@ -1,4 +1,4 @@
 <view>
-  <view style="font-size: 40rpx">欢迎使用</view>
+  <view class="app-title-index-small">欢迎使用</view>
   <view class="app-title-index">爱住自助入住小程序</view>
 </view>

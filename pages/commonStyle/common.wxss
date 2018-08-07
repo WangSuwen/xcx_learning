@@ -1,31 +1,48 @@
+.regular-text {
+  font-family: PingFangSC-Regular
+}
+.app-title-index-small {
+  color: #333333;
+  font-size: 33rpx;
+  line-height: 40rpx;
+}
 .app-title-index {
-  font-size: 58rpx;
-  margin: 10px auto;
+  font-size: 51rpx;
+  margin: 9rpx auto;
   font-weight: 800;
+  color: #202020;
 }
 .app-title {
-  font-size: 48rpx;
-  margin: 10px auto;
+  margin: 40rpx auto;
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #202020;
+  line-height: 44rpx;
 }
 .btn {
-  width: 100%;
+  width: 630rpx;
   height:110rpx;
   margin:20px auto;
   line-height:110rpx;
   border-radius: 25px;
 }
+.btn::after {
+  border: none;
+}
 .normal-btn {
   background: white;
   color: rgb(29,29,29) !important;
-  border-color: rgb(246,246,246) !important;
-  box-shadow: 0px 0px 2px rgb(238,238,238);
+  border: 1px solid #eee;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.05);
 }
+
 .beauty-btn {
-  background: -webkit-linear-gradient(left, rgb(253,116,79), rgb(249,100,105));
   color: white !important;
   border-color: rgb(246,246,246) !important;
-  box-shadow: 0 0 20px 5px rgb(254,226,226);
+  background-image: linear-gradient(90deg, #FB6266 0%, #FF7448 100%);
+  box-shadow: 0 2px 10px 0 rgba(251,98,102,0.30);
 }
+
 .disable-btn {
   background: rgb(198, 198, 198);
   color: rgb(198, 198, 198);
@@ -37,28 +54,48 @@
   border: 1px solid #F9504C;
   border-radius: 25px;
   color: #F9504C;
+  margin:0 auto;
+  text-align:center;
+  line-height:81rpx;
 }
 .text-gray {
   display:block;
-  color: rgb(127,127,127);
-  margin-bottom:5px;
+  margin-bottom:18rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 27.5rpx;
+  color: #666666;
+  line-height: 33rpx;
 }
 .container {
   width:100%;
   max-height:1000rpx;
-  border:1px solid rgb(227, 230, 231);
-  border-radius:5px;
-  padding:10px 10px;
+  padding:55rpx 27.5rpx;
   box-sizing:border-box;
-  margin-top:30rpx;
-  box-shadow:0 0 8px 8px rgb(248,249,252);
+  margin-top:26rpx;
+  background: #FFFFFF;
+  border: 1px solid #E5E8E9;
+  box-shadow: 0 2px 20px 0 #EBEDF3;
+  border-radius: 6px;
 }
 .fix-container {
   border: none !important;
   box-shadow: none !important;
-  margin-top: 10rpx !important;
+  margin-top:0rpx !important;
+  padding-top:0;
 }
 .sub-container {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.text-select {
+  display: block;
+  height:95.33rpx;
+  background-color:#F4F5F8;
+  border-radius:4px;
+  line-height:100rpx;
+  padding:0 29rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }

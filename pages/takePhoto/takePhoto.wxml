@@ -8,28 +8,28 @@
       binderror="error"
       device-position="front"
       class="camera"
-    />
+    >
+      <!-- <cover-view class="camera cover-camera"></cover-view> -->
+    </camera>
     <image
       wx:if="{{photoSrc}}"
       src="{{photoSrc}}"
       class="camera"
     />
     <view class="tips-view">
-      <text class="tips-one">{{photoSrc ? '拍照完成，请上传照片！' : '请拍摄正脸照片...'}}</text>
-      <text class="tips-tow">{{photoSrc ? '' : '需清晰拍摄入住人正脸照片，否则可能无法入住'}}</text>
+      <text class="regular-text tips-one">{{photoSrc ? '拍照完成，请上传照片！' : '请拍摄正脸照片...'}}</text>
+      <text class="regular-text tips-tow">{{photoSrc ? '' : '需清晰拍摄入住人正脸照片，否则可能无法入住'}}</text>
     </view>
     <view>
       <button
         bindtap="{{photoSrc ? 'uploadPhoto' : 'takePhoto'}}"
-        class="btn beauty-btn"
-        style="width: 550rpx"
+        class="btn beauty-btn camera-btn"
       >
         {{photoSrc ? '上传照片' : '拍照'}}
       </button>
       <button
         bindtap="{{photoSrc ? 'reTakePhoto' : 'goBack'}}"
-        class="btn normal-btn"
-        style="width: 550rpx"
+        class="btn normal-btn  camera-btn"
       >
         {{photoSrc ? '重新拍摄' : '取消'}}
       </button>

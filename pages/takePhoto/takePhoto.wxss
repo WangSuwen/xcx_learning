@@ -2,10 +2,19 @@
 
 .camera {
   display:block;
-  height:600rpx;
-  width:600rpx;
+  height:590rpx;
+  width:590rpx;
   margin:0 auto;
+  border-right-color: white;
+}
+.cover-camera {
+  z-index: 9999999;
   border-radius:5px;
+  border:10rpx solid white;
+  width:585rpx;
+  height:585rpx;
+  margin-left: -5rpx;
+  margin-top: -5rpx;
 }
 .tips-view {
   text-align:center;
@@ -15,9 +24,18 @@
   display:block;
 }
 .tips-one {
-  color: rgb(255,71,0);
+  margin-bottom:20rpx;
+  font-size: 36rpx;
+  color: #FF6230;
+  line-height: 44rpx;
 }
 .tips-tow {
-  font-size:30rpx;
-  color: rgb(149,148,149);
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 34rpx;
+}
+.camera-btn {
+  width: 550rpx;
+  height: 88rpx;
+  line-height:88rpx;
 }

@@ -9,6 +9,8 @@ Page({
     checkedRoom: '', // 选中的房间
     rooms: [],
     disabled: true, // 未选中房间，按钮不可用
+    showColumn: 3, // 表格展示的列数
+    showRows: 5, // 展示的行数
   },
 
   /**
@@ -16,11 +18,21 @@ Page({
    */
   onLoad: function (options) {
     const _innId = wx.getStorageSync('innId');
+    const _this = this;
     if (_innId) {
       getRooms(_innId).then(
         result => {
           if (result && !result.code) {
             console.log('rooms-', result);
+            result[2]['no'] = '很长很长很长很长很长很长很长的名字'; // 这个要删掉
+            const _showRows = Math.ceil(result.length / _this.data.showColumn);
+            this.setData({ showRows: ( _showRows > 5 ? 5 : _showRows + 1)});
+            result = result.map((room) => {
+              if (room.no.length > 10) {
+                room.no = room.no.substr(0, 10) + '...'
+              }
+              return room;
+            });
             this.setData({ currHotel: wx.getStorageSync('hotelName'), rooms: result });
           } else {
             wx.showToast({

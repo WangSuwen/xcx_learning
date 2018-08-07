@@ -1,18 +1,21 @@
-<view style="max-height: {{showRows * 110}}rpx; overflow-y:scroll;">
-<block wx:for="{{row}}" wx:key="{{index}}" wx:for-index="rowInd">
-  <!--行-->
-  <view class="t-tr">
-  <!--列-->
-    <view
-      wx:for="{{col}}"
-      wx:for-index="colInd"
-      wx:key="proN-{{index}}"
-      class="t-td {{checkedRoom == tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id'] ? 't-td-checked' : ''}} {{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no'].length > 7 ? 'multi-line-td' : 't-td-lineheight'}}"
-      bindtap="clickRoom"
-      data-roomid="{{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id']}}"
-    >
-    {{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no']}}
+<view style="max-height: {{showRows * 111.2}}rpx;">
+  <block wx:for="{{row}}" wx:key="{{index}}" wx:for-index="rowInd">
+    <!--行-->
+    <view class="t-tr">
+    <!--列-->
+      <view
+        wx:for="{{col}}"
+        wx:for-index="colInd"
+        wx:key="proN-{{index}}"
+        class="t-td {{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no'].length > 7 ? 'multi-line-td' : 't-td-lineheight'}}"
+        bindtap="clickRoom"
+        data-roomid="{{tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id']}}"
+      >
+      {{
+        tbody[!rowInd ? colInd : (rowInd * col + colInd)]['no']
+      }}
+      <image wx:if="{{checkedRoom == tbody[!rowInd ? colInd : (rowInd * col + colInd)]['id']}}" class="t-td-checked-img" src="../../../static/checked-room.png"/>
+      </view>
     </view>
-  </view>
-</block>
+  </block>
 </view>
