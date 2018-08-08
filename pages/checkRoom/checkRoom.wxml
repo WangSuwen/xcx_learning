@@ -2,7 +2,7 @@
   <include src="../template/header1.wxml" />
   <view class="container">
     <text class="checkin-text checkin-title">您办理入住的酒店是：</text>
-    <view class="current-hotel">{{currHotel}}</view>
+    <view class="current-hotel" bindtap="changeHotel">{{currHotel}}</view>
     <view style="height:{{showRows * 110}}rpx;overflow:scroll;">
       <text class="checkin-text room-tips">请选择您入住的房间</text>
       <block wx:if="{{rooms.length}}">

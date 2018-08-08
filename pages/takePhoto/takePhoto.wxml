@@ -8,6 +8,7 @@
       binderror="error"
       device-position="front"
       class="camera"
+      binderror="forbidCamera"
     >
       <!-- <cover-view class="camera cover-camera"></cover-view> -->
     </camera>
@@ -22,7 +23,7 @@
     </view>
     <view>
       <button
-        bindtap="{{photoSrc ? 'uploadPhoto' : 'takePhoto'}}"
+        bindtap="{{cameraCompetence ? (photoSrc ? 'uploadPhoto' : 'takePhoto') : 'forbidCamera'}}"
         class="btn beauty-btn camera-btn"
       >
         {{photoSrc ? '上传照片' : '拍照'}}

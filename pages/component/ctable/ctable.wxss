@@ -31,12 +31,6 @@
   -webkit-box-orient:vertical;
   padding: 15rpx 20rpx;
 }
-/* .t-td-l-row{
-  border-bottom: 1px solid blue;
-} */
-/* .t-td-l-col{
-  border-right: 1px solid blue;
-} */
 .t-td-checked-img {
   width: 36rpx;
   height: 36rpx;

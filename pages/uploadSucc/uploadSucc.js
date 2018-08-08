@@ -6,15 +6,16 @@ Page({
    */
   data: {
     uploadStatus: false,
+    cameraCompetence: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      uploadStatus: wx.getStorageSync('uploadStatus')
-    });
+    const _uploadStatus = wx.getStorageSync('uploadStatus'),
+      _cameraCompetence = wx.getStorageSync('cameraCompetence');
+    this.setData({ 'cameraCompetence': _cameraCompetence, uploadStatus: _uploadStatus});
   },
 
   /**
@@ -28,7 +29,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.camera'] && wx.getStorageSync('uploadStatus') === '') {
+          wx.setStorageSync('cameraCompetence', true);
+          wx.redirectTo({
+            url: '../takePhoto/takePhoto',
+          });
+        }
+      }
+    })
   },
 
   /**

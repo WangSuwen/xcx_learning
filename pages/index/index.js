@@ -18,6 +18,7 @@ Page({
     countyArray: [],
     loading: false,
     isFocus: false,
+    disabled: true,
   },
   onLoad: function (options) {
     const _this = this;
@@ -25,7 +26,7 @@ Page({
       // 登录
       wx.login({
         success: res => {
-          if (res.code) {
+          if (res && res.code) {
             // 获取appID
             getOpenId({
               appId: appId,
@@ -84,7 +85,13 @@ Page({
       result => {
         if (!result.code) {
           // 初始化城市数据
-          let _provArr = [], _cities = [], _counties = [], _currCity = '', proIndex = 0, cityIndex = 0, countyIndex = 0;
+          let _provArr = [],
+            _cities = [],
+            _counties = [],
+            _currCity = '',
+            proIndex = 0,
+            cityIndex = 0,
+            countyIndex = 0;
           const provinceKeys = Object.keys(result);
           if (provinceKeys.length) {
             _provArr = provinceKeys;
@@ -96,10 +103,7 @@ Page({
             try {
               wx.setStorageSync('currCity', _currCity);
             } catch (e) {
-              wx.showToast({
-                title: '获取城市失败',
-                icon: 'none',
-              });
+              this.errHandler(e, '获取城市失败');
             }
             this.setData({
               currCity: _currCity,
@@ -119,7 +123,7 @@ Page({
             });
           }
         } else {
-          this.errHandler({}, '未获取到城市')
+          this.errHandler({}, '未获取到城市');
         }
       },
       err => this.errHandler(err, '未获取到城市')
@@ -137,11 +141,11 @@ Page({
   setDefaultHotel: function(hotels) {
     if (hotels && !hotels.code && hotels.length) {
       const hotel = hotels[0];
-      this.setData({ currHotel: hotel.name });
+      this.setData({ currHotel: hotel.name, disabled: false });
       wx.setStorageSync('hotelName', hotel.name);
       wx.setStorageSync('innId', hotel.innId);
     } else {
-      this.setData({ currHotel: '未获取到酒店' });
+      this.setData({ currHotel: '未获取到酒店', disabled: true });
     }
   },
   // 省市区三级联动， 点击【确定】
@@ -222,7 +226,7 @@ Page({
       });
     } else {
       var errMsg = !innId && !hotelName ? '请选择入住酒店' : '请选择城市';
-      this.errHandler(e, '请选择入住酒店');
+      this.errHandler({}, '请选择入住酒店');
     }
   }
 })

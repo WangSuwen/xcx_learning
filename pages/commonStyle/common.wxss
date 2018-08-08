@@ -91,10 +91,10 @@
 
 .text-select {
   display: block;
-  height:95.33rpx;
+  /* height:95.33rpx; */
   background-color:#F4F5F8;
   border-radius:4px;
-  line-height:100rpx;
+  /* line-height:100rpx; */
   padding:0 29rpx;
   overflow:hidden;
   text-overflow:ellipsis;

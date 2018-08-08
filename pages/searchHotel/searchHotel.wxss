@@ -34,6 +34,7 @@
   margin-top:6rpx;
 }
 .search-input {
+  height:95.33rpx;
   width: 584rpx;
   font-family: PingFangSC-Regular;
   font-size: 29.33rpx;
@@ -47,6 +48,7 @@
   padding-bottom: 30rpx;
 }
 .hotel-list > text {
+  width:540rpx;
   display:inline-block;
   font-family: PingFangSC-Regular;
   font-size: 32rpx;

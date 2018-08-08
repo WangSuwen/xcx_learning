@@ -22,16 +22,17 @@
     <block wx:else>
       <view
         class="hotel-list"
-        bindtap="checkHotel"
-        data-hotelName="{{hotel.name}}"
-        data-innId="{{hotel.innId}}"
-        hover-class='hotel-list-click'
         wx:for="{{hotels}}"
         wx:key="index"
         wx:for-item="hotel"
+        hover-class='hotel-list-click'
       >
         <image class="small-search-icon" src="../../static/search-small.png"></image>
-        <text>
+        <text
+          data-hotelName="{{hotel.name}}"
+          data-innId="{{hotel.innId}}"
+          bindtap="checkHotel"
+        >
           {{hotel.name}}
         </text>
       </view>

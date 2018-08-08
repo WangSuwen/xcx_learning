@@ -5,7 +5,10 @@
   flex-direction: column;
   align-items: center;
 }
-
+.text-select-city {
+  height:95.33rpx;
+  line-height: 100rpx;
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -18,6 +21,17 @@
   font-size: 29.33rpx;
   display: inline-block;
   position: absolute;
+}
+.app-currenthotel {
+  width:510rpx;
+  white-space:normal;
+  word-break:normal;
+  padding:28rpx 0;
+  box-sizing:border-box;
+  /* line-height:50rpx; */
+  display:inline-block;
+  font-size:29.33rpx;
+  position:relative;
 }
 
 .triangle-img {

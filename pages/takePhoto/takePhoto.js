@@ -10,13 +10,41 @@ Page({
     windowHeight: 0,
     toPx: 0,
     cameraHeight: 0,
+    cameraCompetence: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.ctx = wx.createCameraContext();
+    const _this = this;
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.camera']) {
+          console.log('获取到的权限列表：', res.authSetting['scope.camera']);
+          wx.setStorageSync('cameraCompetence', true);
+          this.setData({ cameraCompetence: true});
+          _this.ctx = wx.createCameraContext();
+        }
+      },
+      fail: err => {
+        console.log('获取到的权限列表报错：', err);
+      }
+    })
+  },
+  onShow() {
+    if (this.data.photoSrc) {
+      this.setData({'photoSrc': ''});
+    }
+  },
+  /**
+   * 用户禁止使用相机权限
+   */
+  forbidCamera() {
+    wx.setStorageSync('cameraCompetence', false);
+    wx.redirectTo({
+      url: '../uploadSucc/uploadSucc',
+    });
   },
   /**
    * 照相

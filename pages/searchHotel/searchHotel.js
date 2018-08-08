@@ -9,7 +9,9 @@ Page({
     userInputs: '',
   },
   onLoad: function() {
-    this.setData({ userInputs: wx.getStorageSync('hotelName')});
+    // let _hotelName = wx.getStorageSync('hotelName');
+    // _hotelName = _hotelName.length < 16 ? _hotelName : _hotelName.substr(0, 14) + '...';
+    // this.setData({ userInputs: _hotelName});
   },
   /**
    * 用户输入的handler
@@ -45,9 +47,15 @@ Page({
       data: e.target.dataset.hotelname,
     })
     wx.setStorageSync('innId', e.target.dataset.innid);
-    wx.navigateBack({
-      delta: 1
-    });
+    if (wx.getStorageSync('comefrom') === 'checkroom') {
+      wx.redirectTo({
+        url: '../checkRoom/checkRoom',
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      });
+    }
   },
   /**
    * 取消 按钮

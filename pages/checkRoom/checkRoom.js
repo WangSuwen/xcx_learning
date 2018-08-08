@@ -17,13 +17,24 @@ Page({
    */
   onLoad: function (options) {
     const _innId = wx.getStorageSync('innId');
+    this.loadRooms(_innId);
+  },
+  onShow() {
+    const _innId = wx.getStorageSync('innId');
+    // this.loadRooms(_innId);
+  },
+  onUnload: function() {
+    wx.setStorageSync('roomId', '');
+    this.setData({ disabled: true, rooms: [] });
+  },
+  loadRooms(innId) {
     const _this = this;
-    if (_innId) {
-      getRooms(_innId).then(
+    if (innId) {
+      getRooms(innId).then(
         result => {
           if (result && !result.code) {
             const _showRows = Math.ceil(result.length / _this.data.showColumn);
-            this.setData({ showRows: ( _showRows > 5 ? 5 : _showRows + 1)});
+            this.setData({ showRows: (_showRows > 5 ? 5 : _showRows + 1) });
             result = result.map((room) => {
               if (room.no.length > 10) {
                 room.no = room.no.substr(0, 10) + '...'
@@ -45,11 +56,15 @@ Page({
           });
         }
       );
+    } else {
+      this.errHandler({}, '获取房间失败');
     }
   },
-  onUnload: function() {
-    wx.setStorageSync('roomId', '');
-    this.setData({ disabled: true });
+  errHandler: function (err, msg) {
+    wx.showToast({
+      title: msg,
+      icon: 'none',
+    });
   },
   /**
    * table组件td点击事件
@@ -59,8 +74,13 @@ Page({
     try{
       roomId = e.detail.target.dataset.roomid;
       if (roomId) {
-        this.setData({ checkedRoom: roomId, disabled: false });
-        wx.setStorageSync('roomId', roomId);
+        if (roomId == this.data.checkedRoom) {
+          this.setData({ checkedRoom: '', disabled: true });
+          wx.setStorageSync('roomId', '');
+        } else {
+          this.setData({ checkedRoom: roomId, disabled: false });
+          wx.setStorageSync('roomId', roomId); 
+        }
       } else {
         throw Error();
       }
@@ -87,5 +107,14 @@ Page({
         mask: true,
       });
     }
+  },
+  /**
+   * 
+   */
+  changeHotel: function() {
+    wx.setStorageSync('comefrom', 'checkroom');
+    wx.redirectTo({
+      url: '../searchHotel/searchHotel',
+    });
   }
 })

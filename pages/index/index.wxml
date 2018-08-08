@@ -11,17 +11,17 @@
       class="sub-container"
     >
       <view class="text-gray">您当前位置</view>
-      <view class="text-select">
+      <view class="text-select text-select-city">
         <view class="app-currentcity">{{currCity || '北京市'}}</view>
         <image
           src="../../static/triangle.png"
           class="triangle-img"/>
       </view>
     </picker>
-    <view class="text-select-icon" bindtap="getLocation">
+    <!-- <view class="text-select-icon" bindtap="getLocation">
       <image class="location-img" src="../../static/location.png"></image>
       <text class="location-text">当前位置</text>
-    </view>
+    </view> -->
     <view class="sub-container">
       <text class="text-gray">请输入您要入住的酒店：</text>
       <view
@@ -29,8 +29,8 @@
         style="position:relative"
         bindtap="focusHandler"
       >
-        <view class="app-currentcity">{{currHotel}}</view>
-        <view class="text-select-icon">
+        <view class="app-currenthotel">{{currHotel}}</view>
+        <view style="float: right;margin-top:28rpx;">
           <image class="search-icon" src="../../static/search-big.png"></image>
         </view>
       </view>
@@ -38,7 +38,7 @@
     <view>
       <button
         type="primary"
-        class="btn beauty-btn"
+        class="btn {{disabled ? 'disable-btn' : 'beauty-btn'}}"
         size="default"
         loading="{{loading}}"
         plain="true"
