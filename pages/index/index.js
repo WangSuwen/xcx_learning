@@ -193,6 +193,9 @@ Page({
       }
     });
   },
+  getLocation: function() {
+    console.log('点击了获取当前位置按钮');
+  },
   // 确定按钮
   confirm: function() {
     var _this = this;

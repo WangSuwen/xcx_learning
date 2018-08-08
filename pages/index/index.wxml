@@ -16,12 +16,12 @@
         <image
           src="../../static/triangle.png"
           class="triangle-img"/>
-        <view class="text-select-icon">
-          <image class="location-img" src="../../static/location.png"></image>
-          <text class="location-text">当前位置</text>
-        </view>
       </view>
     </picker>
+    <view class="text-select-icon" bindtap="getLocation">
+      <image class="location-img" src="../../static/location.png"></image>
+      <text class="location-text">当前位置</text>
+    </view>
     <view class="sub-container">
       <text class="text-gray">请输入您要入住的酒店：</text>
       <view

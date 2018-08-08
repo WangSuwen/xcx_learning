@@ -1,6 +1,5 @@
 const { getRooms } = require('../../api/index');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -23,8 +22,6 @@ Page({
       getRooms(_innId).then(
         result => {
           if (result && !result.code) {
-            console.log('rooms-', result);
-            result[2]['no'] = '很长很长很长很长很长很长很长的名字'; // 这个要删掉
             const _showRows = Math.ceil(result.length / _this.data.showColumn);
             this.setData({ showRows: ( _showRows > 5 ? 5 : _showRows + 1)});
             result = result.map((room) => {
@@ -49,9 +46,6 @@ Page({
         }
       );
     }
-  },
-  onReady: function() {
-    
   },
   onUnload: function() {
     wx.setStorageSync('roomId', '');

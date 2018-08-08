@@ -51,7 +51,9 @@
   height: 33rpx;
 }
 .text-select-icon {
-  float: right;
+  position:absolute;
+  right:55rpx;
+  top:142rpx;
 }
 .location-img {
   width: 27.5rpx;
